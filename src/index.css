@@ -37,9 +37,9 @@ main {
 
 .form {
     display: grid;
-    grid-template-rows: 5vh 5vh;
+    grid-template-rows: 5vh 5vh 5vh;
     grid-template-columns: 50vh 50vh;
-    gap: 17px
+    gap: 50px
 }
 
 .form--button{
@@ -50,11 +50,21 @@ main {
     color: white;
     border: none;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
 }
 
+.form > label {
+    font-family: 'Karla';
+}
+
+
 .form--input{
+    min-width: 100%;
+    min-height: 5vh;
     font-family: 'Karla';
     border-radius: 5px;
     border: 1px solid #D5D4D8;
     text-indent: 5px;
+    margin-top: 10px;
 }

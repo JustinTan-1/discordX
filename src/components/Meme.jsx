@@ -4,11 +4,15 @@ export default function Meme() {
     return (
         <main>
             <form className="form">
+                <label> Top Text
                 <input type="text"
-                className="form--input" placeholder="Top Text"/>
+                className="form--input" placeholder="When you discover"/>
+                </label>
+                <label> Bottom Text
                 <input type="text"
                 className="form--input"
-                placeholder="Bottom Text"/>
+                placeholder="Meme Generator"/>
+                </label>
                 <button className="form--button">Generate Meme</button>
             </form>
         </main>
