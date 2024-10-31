@@ -1,13 +1,17 @@
-import Header from "./components/Header.jsx"
-import Meme from "./components/Meme.jsx"
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Gif from "./pages/Gif.jsx"
+import Memes from "./pages/Memes.jsx"
+import Home from "./pages/Home.jsx"
 
-function App() {
-  return(
-  <div>
-  <Header />
-  <Meme />
-  </div>
-  )
+export default function App() {
+    return(
+        <Router>
+            <Routes>
+                <Route index element={<Home />} />
+                <Route path ="/home" element={<Home />} />
+                <Route path ="/meme" element={<Memes />} />
+                <Route path ="/gif" element={<Gif />} />
+            </Routes>
+        </Router>
+    )
 }
-
-export default App

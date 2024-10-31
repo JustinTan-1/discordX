@@ -28,6 +28,11 @@
     width: auto;
 }
 
+.header--link {
+    color: white;
+    text-decoration: none;
+}
+
 main {
     padding: 36px;
     display: flex;
@@ -99,7 +104,7 @@ main {
 }
 
 .meme--image{
-    max-width: 100%;
+    max-width: 60vh;
     border-radius: 3px;
 }
 
