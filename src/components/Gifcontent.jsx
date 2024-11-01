@@ -4,7 +4,7 @@ export default function Gifcontent() {
     const API_KEY = ""
 
     const [allGifs, setAllGifData] = React.useState([])
-    const [gifData, setGifData] = React.useState({topText: "", bottomText: "", randomGif: "https://media.tenor.com/62wK1Xyhp_EAAAPw/happy.mp4"})
+    const [gifData, setGifData] = React.useState({topText: "", bottomText: "", randomGif: "https://media.tenor.com/62wK1Xyhp_EAAAPw/happy.mp4", gifSearch: ""})
     const [gifQuery, setGifQuery] = React.useState("excited")
 
     React.useEffect(() => {
@@ -12,7 +12,7 @@ export default function Gifcontent() {
             .then(res => res.json())
             .then(data => setAllGifData(data.results))
             console.log(allGifs)
-    }, []) 
+    }, [gifQuery]) 
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -25,6 +25,7 @@ export default function Gifcontent() {
     }
 
     function getGif() {
+        gifData.gifSearch && setGifQuery(gifData.gifSearch) 
         const container = document.querySelector(".container")
         container.removeChild(document.getElementById("gifContainer"))
         const url = allGifs[Math.floor(Math.random()*allGifs.length)].media_formats.loopedmp4.url
@@ -48,6 +49,7 @@ export default function Gifcontent() {
         video.src = gifData.randomGif
         gifContainer.play()
     }
+
     return (
         <main>
             <div className="form">
@@ -69,6 +71,8 @@ export default function Gifcontent() {
                 className="form--input--giftype"
                 placeholder="Meme Generator"
                 name = "gifSearch"
+                value = {gifData.gifSearch}
+                onChange={handleChange}
                 />
                 </label>
                 <button className="form--button" onClick={getGif}>Generate Gif</button>
