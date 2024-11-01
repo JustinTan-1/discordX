@@ -52,7 +52,7 @@ export default function Gifcontent() {
 
     return (
         <main>
-            <div className="form">
+            <div className="form--gif">
                 <label> Top Text
                 <input type="text"
                 className="form--input" placeholder="When you discover" onChange={handleChange}
@@ -75,7 +75,7 @@ export default function Gifcontent() {
                 onChange={handleChange}
                 />
                 </label>
-                <button className="form--button" onClick={getGif}>Generate Gif</button>
+                <button className="form--button--gif" onClick={getGif}>Generate Gif</button>
             </div>
             
             <div className="container">

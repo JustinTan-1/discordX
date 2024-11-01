@@ -28,7 +28,7 @@ export default function Meme() {
     }
     return (
         <main>
-            <div className="form">
+            <div className="form--meme">
                 <label> Top Text
                 <input type="text"
                 className="form--input" placeholder="When you discover" onChange={handleChange}
@@ -42,7 +42,7 @@ export default function Meme() {
                 name = "bottomText"
                 value = {memeData.bottomText}/>
                 </label>
-                <button className="form--button" onClick={getMeme}>Generate Meme</button>
+                <button className="form--button--meme" onClick={getMeme}>Generate Meme</button>
             </div>
             <div className="meme">
                 <img src={memeData.randomImage} className="meme--image" />
