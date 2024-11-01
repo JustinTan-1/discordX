@@ -8,7 +8,7 @@ export default function Gifcontent() {
     const [gifQuery, setGifQuery] = React.useState("excited")
 
     React.useEffect(() => {
-        fetch(`https://tenor.googleapis.com/v2/search?q=${gifQuery}&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
+        fetch(`https://tenor.googleapis.com/v2/search?q=${gifQuery}&limit=50&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
             .then(res => res.json())
             .then(data => setAllGifData(data.results))
             console.log(allGifs)
@@ -66,10 +66,10 @@ export default function Gifcontent() {
                 name = "bottomText"
                 value = {gifData.bottomText}/>
                 </label>
-                <label> Gif Type
+                <label> Search Gif
                 <input type="text"
                 className="form--input--giftype"
-                placeholder="Meme Generator"
+                placeholder="Excited"
                 name = "gifSearch"
                 value = {gifData.gifSearch}
                 onChange={handleChange}
