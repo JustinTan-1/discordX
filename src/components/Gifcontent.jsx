@@ -5,9 +5,10 @@ export default function Gifcontent() {
 
     const [allGifs, setAllGifData] = React.useState([])
     const [gifData, setGifData] = React.useState({topText: "", bottomText: "", randomGif: "https://media.tenor.com/62wK1Xyhp_EAAAPw/happy.mp4"})
+    const [gifQuery, setGifQuery] = React.useState("excited")
 
     React.useEffect(() => {
-        fetch("https://tenor.googleapis.com/v2/search?q=excited&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ")
+        fetch(`https://tenor.googleapis.com/v2/search?q=${gifQuery}&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
             .then(res => res.json())
             .then(data => setAllGifData(data.results))
             console.log(allGifs)
@@ -33,7 +34,6 @@ export default function Gifcontent() {
         })
         const gifContainer = container.appendChild(document.createElement("video"))
         const video = gifContainer.appendChild(document.createElement("source"))
-        
         setVideoAttributes(gifContainer, video)
         
     }
@@ -64,8 +64,16 @@ export default function Gifcontent() {
                 name = "bottomText"
                 value = {gifData.bottomText}/>
                 </label>
-                <button className="form--button" onClick={getGif}>Generate Meme</button>
+                <label> Gif Type
+                <input type="text"
+                className="form--input--giftype"
+                placeholder="Meme Generator"
+                name = "gifSearch"
+                />
+                </label>
+                <button className="form--button" onClick={getGif}>Generate Gif</button>
             </div>
+            
             <div className="container">
                 <video className="meme--image" autoPlay={true} loop={true} id="gifContainer">
                 <source src={gifData.randomGif}type="video/mp4"/>

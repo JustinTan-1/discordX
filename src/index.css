@@ -51,12 +51,12 @@ main {
 .form {
     display: grid;
     grid-template-rows: 5vh 5vh 5vh;
-    grid-template-columns: 50vh 50vh;
-    gap: 50px
+    grid-template-columns: 30vh 30vh 30vh;
+    gap: 50px;
 }
 
 .form--button{
-    grid-column: span 2;
+    grid-column: span 3;
     font-family: 'Karla';
     border-radius: 5px;
     background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
@@ -79,8 +79,19 @@ main {
     border-radius: 5px;
     border: 1px solid #D5D4D8;
     text-indent: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
+
+.form--input--giftype {
+    min-width: 100%;
+    min-height: 5vh;
+    font-family: 'Karla';
+    border-radius: 5px;
+    border: 1px solid #D5D4D8;
+    text-indent: 5px;
+    margin-top: 5px;
+    }
+
 .meme {
     position: relative;
 }
