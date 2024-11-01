@@ -85,6 +85,10 @@ main {
     position: relative;
 }
 
+.container {
+    position: relative;
+}
+
 .meme--text{
     position: absolute;
     width: 80%;
