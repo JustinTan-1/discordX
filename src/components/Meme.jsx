@@ -1,5 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
+import {reveal} from "../utils/animation.ts"
 
 export default function Meme() {
     const [allMemes, setAllMemeData] = React.useState([])
@@ -28,8 +29,12 @@ export default function Meme() {
         })
     }
     return (
-        <main>
-            <div className="form--meme">
+        <motion.main variants={reveal} initial="hiddenVariant" animate="revealedVariant" transition={{
+            ease: "easeIn",
+            type: "spring",
+            staggerChildren: 1,
+            duration: 0.7}}>
+            <motion.div className="form--meme" variants={reveal}>
                 <label> Top Text
                 <input type="text"
                 className="form--input" placeholder="When you discover" onChange={handleChange}
@@ -44,12 +49,12 @@ export default function Meme() {
                 value = {memeData.bottomText}/>
                 </label>
                 <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--meme" onClick={getMeme}>Generate Meme</motion.button>
-            </div>
-            <div className="meme">
+            </motion.div>
+            <motion.div className="meme" variants={reveal}>
                 <img src={memeData.randomImage} className="meme--image" />
                 <h2 className="meme--text top">{memeData.topText}</h2>
                 <h2 className="meme--text bottom">{memeData.bottomText}</h2>
-            </div>
-        </main>
+            </motion.div>
+        </motion.main>
     )
 }

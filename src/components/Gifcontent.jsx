@@ -1,5 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
+import {reveal} from "../utils/animation.ts"
  
 export default function Gifcontent() {
 
@@ -51,8 +52,12 @@ export default function Gifcontent() {
     }
 
     return (
-        <main>
-            <div className="form--gif">
+        <motion.main variants={reveal} initial = "hiddenVariant" animate="revealedVariant" transition={{
+            ease: "easeIn",
+            type: "spring",
+            staggerChildren: 1,
+            duration: 0.7}}>
+            <motion.div variants={reveal} className="form--gif">
                 <label> Top Text
                 <input type="text"
                 className="form--input" placeholder="When you discover" onChange={handleChange}
@@ -76,15 +81,15 @@ export default function Gifcontent() {
                 />
                 </label>
                 <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--gif" onClick={getGif}>Generate Gif</motion.button>
-            </div>
+            </motion.div>
             
-            <div className="container">
+            <motion.div className="container" variants={reveal}>
                 <video className="meme--image" autoPlay={true} loop={true} id="gifContainer">
                 <source src={gifData.randomGif}type="video/mp4"/>
                 </video>
                 <h2 className="meme--text top">{gifData.topText}</h2>
                 <h2 className="meme--text bottom">{gifData.bottomText}</h2>
-            </div>
-        </main>
+            </motion.div>
+        </motion.main>
     )
 }
