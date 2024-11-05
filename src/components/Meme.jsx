@@ -1,4 +1,5 @@
 import React from "react"
+import { motion } from "framer-motion"
 
 export default function Meme() {
     const [allMemes, setAllMemeData] = React.useState([])
@@ -42,7 +43,7 @@ export default function Meme() {
                 name = "bottomText"
                 value = {memeData.bottomText}/>
                 </label>
-                <button className="form--button--meme" onClick={getMeme}>Generate Meme</button>
+                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--meme" onClick={getMeme}>Generate Meme</motion.button>
             </div>
             <div className="meme">
                 <img src={memeData.randomImage} className="meme--image" />

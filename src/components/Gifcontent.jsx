@@ -1,7 +1,7 @@
 import React from "react"
-
+import { motion } from "framer-motion"
+ 
 export default function Gifcontent() {
-    const API_KEY = ""
 
     const [allGifs, setAllGifData] = React.useState([])
     const [gifData, setGifData] = React.useState({topText: "", bottomText: "", randomGif: "https://media.tenor.com/62wK1Xyhp_EAAAPw/happy.mp4", gifSearch: ""})
@@ -11,7 +11,6 @@ export default function Gifcontent() {
         fetch(`https://tenor.googleapis.com/v2/search?q=${gifQuery}&limit=50&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
             .then(res => res.json())
             .then(data => setAllGifData(data.results))
-            console.log(allGifs)
     }, [gifQuery]) 
 
     function handleChange(event) {
@@ -25,18 +24,19 @@ export default function Gifcontent() {
     }
 
     function getGif() {
-        gifData.gifSearch && setGifQuery(gifData.gifSearch) 
-        const container = document.querySelector(".container")
-        container.removeChild(document.getElementById("gifContainer"))
+        console.log(allGifs)
+        gifData.gifSearch != "" && setGifQuery(gifData.gifSearch) 
         const url = allGifs[Math.floor(Math.random()*allGifs.length)].media_formats.loopedmp4.url
-        console.log(url)
         setGifData(prevGif => {
             return ({...prevGif, randomGif: url})
         })
+        console.log(url)
+        console.log(gifData.randomGif)
+        const container = document.querySelector(".container")
+        container.removeChild(document.getElementById("gifContainer"))
         const gifContainer = container.appendChild(document.createElement("video"))
         const video = gifContainer.appendChild(document.createElement("source"))
         setVideoAttributes(gifContainer, video)
-        
     }
 
     function setVideoAttributes(gifContainer, video) {
@@ -75,7 +75,7 @@ export default function Gifcontent() {
                 onChange={handleChange}
                 />
                 </label>
-                <button className="form--button--gif" onClick={getGif}>Generate Gif</button>
+                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--gif" onClick={getGif}>Generate Gif</motion.button>
             </div>
             
             <div className="container">
