@@ -1,6 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import {reveal} from "../utils/animation.ts"
+import setVideoAttributes from "../utils/setVideoAttributes.js"
  
 export default function Gifcontent() {
 
@@ -37,22 +38,12 @@ export default function Gifcontent() {
         container.removeChild(document.getElementById("gifContainer"))
         const gifContainer = container.appendChild(document.createElement("video"))
         const video = gifContainer.appendChild(document.createElement("source"))
-        setVideoAttributes(gifContainer, video)
+        setVideoAttributes(gifContainer, video, gifData.randomGif)
     }
 
-    function setVideoAttributes(gifContainer, video) {
-        gifContainer.id = "gifContainer"
-        video.type = "video/mp4"
-        gifContainer.autoPlay = true
-        gifContainer.loop = true
-        gifContainer.type = "video/mp4"
-        gifContainer.className = "meme--image"
-        video.src = gifData.randomGif
-        gifContainer.play()
-    }
 
     return (
-        <motion.main variants={reveal} initial = "hiddenVariant" animate="revealedVariant" transition={{
+        <motion.main initial = "hiddenVariant" animate="revealedVariant" transition={{
             ease: "easeIn",
             type: "spring",
             staggerChildren: 1,

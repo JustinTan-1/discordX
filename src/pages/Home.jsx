@@ -1,9 +1,20 @@
 import Header from "../components/Header"
-import Frog from "../assets/pepe.png"
 import {reveal} from "../utils/animation"
 import {motion} from "framer-motion"
+import React from "react"
 
 export default function Home() {
+    const [allGifs, setAllGifs] = React.useState([])
+
+    React.useEffect(() => {
+        fetch(`https://tenor.googleapis.com/v2/search?q=roblox&ar_range=standard&limit=10&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
+            .then(res => res.json())
+            .then(data => setAllGifs(data.results))
+    }, [])
+    const videos = allGifs.map( gif => {
+        return (<video autoPlay={true} loop={true} className={`home--videos vid${allGifs.indexOf(gif)}`}><source src={gif.media_formats.loopedmp4.url}/></video>)
+    })
+    console.log(videos)
     return (
         <div>
         <Header />
@@ -14,18 +25,7 @@ export default function Home() {
             duration: 0.5}} className="home--content">
             <h1 className="home--text">Welcome to Meme Generator</h1>
         <div className="video--container">
-        <video autoPlay={true} loop={true} className="home--videos vid1" >
-            <source src="https://media.tenor.com/vTjgtOd-evkAAAPw/torture-dance-jojo.mp4"/>
-        </video>
-        <video autoPlay={true} loop={true} className="home--videos vid2" >
-            <source src="https://media.tenor.com/vTjgtOd-evkAAAPw/torture-dance-jojo.mp4"/>
-        </video>
-        <video autoPlay={true} loop={true} className="home--videos vid3" >
-            <source src="https://media.tenor.com/vTjgtOd-evkAAAPw/torture-dance-jojo.mp4"/>
-        </video>
-        <video autoPlay={true} loop={true} className="home--videos vid4" >
-            <source src="https://media.tenor.com/vTjgtOd-evkAAAPw/torture-dance-jojo.mp4"/>
-        </video>
+        {videos}
         </div>
         </motion.div>
         </div>

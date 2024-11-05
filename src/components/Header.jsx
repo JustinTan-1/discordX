@@ -8,7 +8,6 @@ import {reveal} from "../utils/animation.ts"
 export default function() {
     return( 
         <motion.div className="header" initial="hiddenVariant" animate ="revealedVariant" transition={{
-
             staggerChildren: 0.1,
             duration:0.5,
             delayChildren: 0.5

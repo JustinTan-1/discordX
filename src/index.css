@@ -20,13 +20,13 @@
     position: absolute;
     left: -368px;
     height: 200px;
-    left: max(1200px,100%);
+    left: max(3000px,100%);
     animation-name: scrollLeft;
     animation-duration: 30s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
-
 }
+
 
 @keyframes scrollLeft {
     to{
@@ -42,21 +42,39 @@
     mask-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 20%, rgba(0,0,0,1), rgba(0,0,0,0) 100%);
 }
 
+.vid0 {
+    animation-delay: calc(30s / 10 * (10-1)*-1);
+    animation-delay: -27s
+}
 .vid1 {
-    animation-delay: calc(30s / 4 * (4-1)*-1);
-    animation-delay: -22.5s
+    animation-delay: -24s
 }
 .vid2 {
-    animation-delay: calc(30s / 4 * (4-2) *-1);
-    animation-delay: -15s
+    animation-delay: -21s
 }
 .vid3 {
-    animation-delay: calc(30s / 4 * (4-3)*-1);
-    animation-delay: -7.5s
+    animation-delay: -18s
 }
 .vid4 {
+    animation-delay: -15s
+}
+.vid5 {
+    animation-delay: -12s
+}
+.vid6 {
+    animation-delay: -9s
+}
+.vid7 {
+    animation-delay: -6s
+}
+.vid8 {
+    animation-delay: -3s
+}
+.vid9 {
     animation-delay: 0s
 }
+
+
 
 .pepe {
     max-width: 50vh;
