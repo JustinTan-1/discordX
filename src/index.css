@@ -82,20 +82,21 @@
 }
 
 .header{
-    background: linear-gradient(90deg, #672280 1.18%, #8E25B3 62.36%, #9A25C3 81.82%, #A626D3 100%);
+    background: linear-gradient(90deg, #4b4a4c 1.18%, #6b6a6c 62.36%, #787878 81.82%, #adadad 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 100%;
     height: 10vh;
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-content: space-between;
 }
 
 .header--text{
     font-family: 'Karla';
     font-style: normal;
     font-weight: 700;
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 24px;
     letter-spacing: -0.1em;
     color: #FFFFFF;
@@ -109,11 +110,20 @@
     width: auto;
 }
 
-.header--link {
+.header--left {
+    height: 80%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header--link, .header--link--right {
     color: white;
     text-decoration: none;
     margin-left: 1rem;
     margin-top: 5px;
+    margin-right: 1rem;
 }
 
 .header--link:hover {

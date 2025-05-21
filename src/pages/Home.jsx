@@ -7,7 +7,7 @@ export default function Home() {
     const [allGifs, setAllGifs] = React.useState([])
 
     React.useEffect(() => {
-        fetch(`https://tenor.googleapis.com/v2/search?q=roblox&ar_range=wide&limit=10&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
+        fetch(`https://tenor.googleapis.com/v2/search?q=discordwumpus&ar_range=wide&limit=10&key=%20AIzaSyBfgO-XYqzUSAm8ECbo1OqsuUb1drB8slQ`)
             .then(res => res.json())
             .then(data => setAllGifs(data.results))
     }, [])
@@ -23,7 +23,7 @@ export default function Home() {
             type: "tween",
             staggerChildren: 0.1,
             duration: 0.5}} className="home--content">
-            <h1 className="home--text">Welcome to Meme Generator</h1>
+            <h1 className="home--text">Discord Message Manager</h1>
         <div className="video--container">
         {videos}
         </div>
