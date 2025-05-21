@@ -126,9 +126,10 @@
     margin-right: 1rem;
 }
 
-.header--link:hover {
-    color: gray;
-  }
+.link--box {
+    display: flex;
+}
+
 
 @media (max-width: 700px) {
     .header--text {
