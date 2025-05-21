@@ -167,11 +167,11 @@ main {
     gap: 50px;
 }
 
-.form--button--meme{
+.form--button--login{
     grid-column: span 2;
     font-family: 'Karla';
     border-radius: 5px;
-    background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+    background: linear-gradient(90.41deg, #1f338d 1.14%, #186cda 100%);
     color: white;
     border: none;
     cursor: pointer;
@@ -179,11 +179,11 @@ main {
     font-size: 1rem;
 }
 
-.form--button--gif{
+.form--button--register{
     grid-column: span 3;
     font-family: 'Karla';
     border-radius: 5px;
-    background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
+    background: linear-gradient(90.41deg, #1f338d 1.14%, #186cda 100%);
     color: white;
     border: none;
     cursor: pointer;

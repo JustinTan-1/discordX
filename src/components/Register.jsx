@@ -58,7 +58,7 @@ export default function Register() {
                 onChange={handleChange}
                 />
                 </label>
-                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--gif" onClick={register}>Register</motion.button>
+                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--register" onClick={register}>Register</motion.button>
             </motion.div>
         </motion.main>
     )

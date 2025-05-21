@@ -7,7 +7,12 @@ import {reveal} from "../utils/animation.ts"
 import { useCookies } from 'react-cookie'
 
 export default function() {
-    const [cookies, setCookie] = useCookies(['user'])
+    const [cookies, setCookie, removeCookie] = useCookies(['user'])
+
+    function logout() {
+        console.log("CLICK")
+        removeCookie("user")
+    }
 
     return( 
         <motion.div className="header" initial="hiddenVariant" animate ="revealedVariant" transition={{
@@ -30,7 +35,7 @@ export default function() {
                 <Link to="/login" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Login</motion.div></Link>
             </div>
             : 
-            <a href="" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Logout</motion.div></a> 
+            <div className = "header--link" onClick={logout}><motion.div variants={reveal} whileHover={{scale: 1.1}}>Logout</motion.div></div> 
             }
 
         </motion.div>

@@ -67,7 +67,7 @@ export default function Login() {
                 name = "password"
                 value = {userData.password}/>
                 </label>
-                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--gif" onClick={register}>Login</motion.button>
+                <motion.button whileHover={{scale: 1.01}} whileTap={{scale:0.95}} className="form--button--login" onClick={register}>Login</motion.button>
             </motion.div>
         </motion.main>
     )
