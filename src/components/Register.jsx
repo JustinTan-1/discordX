@@ -10,7 +10,7 @@ export default function Register() {
         const {name, value} = event.target
         setUserData(prevUserData => {
             return {
-                ...prevGifData,
+                ...prevUserData,
                 [name]: value
             }
         })
@@ -18,9 +18,8 @@ export default function Register() {
 
     function register() {
         if (userData.username != "" && userData.password != "" && userData.token != "") {
-
+            console.log(userData)
         }
-
     }
 
 
@@ -34,20 +33,20 @@ export default function Register() {
                 <label> Username
                 <input type="text"
                 className="form--input" onChange={handleChange}
-                name = "topText"
+                name = "username"
                 value = {userData.username}/>
                 </label>
                 <label> Password
                 <input type="text"
                 className="form--input"
                 onChange={handleChange}
-                name = "bottomText"
+                name = "password"
                 value = {userData.password}/>
                 </label>
                 <label> Discord Token
                 <input type="text"
                 className="form--input--giftype"
-                name = "gifSearch"
+                name = "token"
                 value = {userData.token}
                 onChange={handleChange}
                 />
