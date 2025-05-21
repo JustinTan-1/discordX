@@ -36,7 +36,7 @@ export default function Register() {
             type: "spring",
             staggerChildren: 1,
             duration: 0.7}}>
-            <motion.div variants={reveal} className="form--gif">
+            <motion.div variants={reveal} className="form--register">
                 <label> Username
                 <input type="text"
                 className="form--input" onChange={handleChange}

@@ -147,12 +147,12 @@
 main {
     padding: 36px;
     display: flex;
-    height: 100vh;
+    height: 80vh;
     flex-direction: column;
     align-items: center;
 }
 
-.form--gif {
+.form--register {
     display: grid;
     grid-template-rows: 5vh 5vh 5vh;
     grid-template-columns: 30vh 30vh 30vh;
@@ -160,7 +160,7 @@ main {
 }
 
 
-.form--meme {
+.form--login {
     display: grid;
     grid-template-rows: 5vh 5vh 5vh;
     grid-template-columns: 50vh 50vh;
@@ -293,4 +293,28 @@ main {
 
 .top {
     top: 0
+}
+
+.popupError { 
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-family: "Karla";
+    margin-top: auto;
+    background: linear-gradient(90.41deg, #a0433f 1.14%, #d45844 100%);
+    padding: 8px;
+    color: rgb(67, 63, 63);
+}
+
+.popupSuccess { 
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-family: "Karla";
+    margin-top: auto;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(90.41deg, #36952d 1.14%, #32d85e 100%);
+    padding: 8px;
+    color: rgb(67, 63, 63);
 }
