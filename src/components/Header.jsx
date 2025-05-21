@@ -24,10 +24,14 @@ export default function() {
             </div>
 
             {cookies.user ? <Link to="/meme" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Channel Monitor</motion.div></Link> : <></>}
+            {!cookies.user ? 
             <div className="link--box">
                 <Link to="/register" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Register</motion.div></Link> 
                 <Link to="/login" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Login</motion.div></Link>
             </div>
+            : 
+            <a href="" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Logout</motion.div></a> 
+            }
 
         </motion.div>
     )

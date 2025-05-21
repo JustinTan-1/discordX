@@ -1,9 +1,10 @@
 import React from "react"
 import { motion } from "framer-motion"
 import {reveal} from "../utils/animation.ts"
+import constants from "../utils/constants.js"
  
 export default function Register() {
-
+    const url = constants.url
     const [userData, setUserData] = React.useState({username: "", password: "", token: "",})
 
     function handleChange(event) {
@@ -18,7 +19,7 @@ export default function Register() {
 
     function register() {
         if (userData.username != "" && userData.password != "" && userData.token != "") {
-            fetch("http://127.0.0.1:5000/api/register", {
+            fetch(`${url}/api/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"

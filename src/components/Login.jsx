@@ -2,10 +2,14 @@ import React from "react"
 import { motion } from "framer-motion"
 import {reveal} from "../utils/animation.ts"
 import { data } from "framer-motion/client"
+import constants from "../utils/constants.js"
+import { useCookies } from 'react-cookie'
  
 export default function Login() {
 
+    const url = constants.url
     const [userData, setUserData] = React.useState({username: "", password: ""})
+    const [cookie, setCookie] = useCookies(['user'])
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -19,7 +23,7 @@ export default function Login() {
 
     function register() {
         if (userData.username != "" && userData.password != "" && userData.token != "") {
-            fetch("http://127.0.0.1:5000/api/login", {
+            fetch(`${url}/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -35,6 +39,7 @@ export default function Login() {
                         console.log(data.error)
                     } else {
                         console.log("SUCESS")
+                        setCookie("user")
                     }
                 }
             )
