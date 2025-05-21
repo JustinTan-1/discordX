@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Gif from "./pages/Register.jsx"
-import Memes from "./pages/Memes.jsx"
+import Register from "./pages/Register.jsx"
+import Login from "./pages/Login.jsx"
 import Home from "./pages/Home.jsx"
 
 export default function App() {
@@ -9,8 +9,8 @@ export default function App() {
             <Routes>
                 <Route index element={<Home />} />
                 <Route path ="/home" element={<Home />} />
-                <Route path ="/meme" element={<Memes />} />
-                <Route path ="/register" element={<Gif />} />
+                <Route path ="/login" element={<Login />} />
+                <Route path ="/register" element={<Register />} />
             </Routes>
         </Router>
     )

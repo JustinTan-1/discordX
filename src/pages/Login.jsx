@@ -1,11 +1,11 @@
 import Header from "../components/Header.jsx"
-import Meme from "../components/Meme.jsx"
+import LoginBody from "../components/Login.jsx"
 
 function Memes() {
   return(
   <div>
   <Header />
-  <Meme />
+  <LoginBody />
   </div>
   )
 }
