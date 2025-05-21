@@ -1,11 +1,6 @@
-# Meme Generator
+# discordX
 
-Website that pulls from Tenor API for randomly generated meme/gif fun!
+Seamless discord mass message management
 
-**Link to project:** https://memegenerator4.netlify.app/
 
-![screenshot](./src/assets/screenshot.png)
-
-# How It's Made:
-**Tech:** HTML, CSS, Javascript, ReactJS
 
