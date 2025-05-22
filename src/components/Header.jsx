@@ -5,12 +5,14 @@ import { motion } from "framer-motion"
 import { useAnimate, stagger } from "framer-motion"
 import {reveal} from "../utils/animation.ts"
 import { useCookies } from 'react-cookie'
+import constants from "../utils/constants.js"
 
 export default function() {
     const [cookies, setCookie, removeCookie] = useCookies(['user'])
+    const url = constants.url
 
     function logout() {
-        console.log("CLICK")
+        fetch(`${url}/api/logout`)
         removeCookie("user")
     }
 
@@ -26,7 +28,7 @@ export default function() {
             </Link>
             
             <Link to="/" className = "header--text"><motion.div variants={reveal}>DiscordX</motion.div></Link>
-            {cookies.user ? <Link to="/meme" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Channel Monitor</p></motion.div></Link> : <></>}
+            {cookies.user ? <Link to="/monitor" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Channel Monitor</p></motion.div></Link> : <></>}
             </div>
 
             
