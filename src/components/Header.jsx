@@ -26,16 +26,17 @@ export default function() {
             </Link>
             
             <Link to="/" className = "header--text"><motion.div variants={reveal}>DiscordX</motion.div></Link>
+            {cookies.user ? <Link to="/meme" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Channel Monitor</p></motion.div></Link> : <></>}
             </div>
 
-            {cookies.user ? <Link to="/meme" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Channel Monitor</motion.div></Link> : <></>}
+            
             {!cookies.user ? 
             <div className="link--box">
-                <Link to="/register" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Register</motion.div></Link> 
-                <Link to="/login" className = "header--link"><motion.div variants={reveal} whileHover={{scale: 1.1}}>Login</motion.div></Link>
+                <Link to="/register" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Register</p></motion.div></Link> 
+                <Link to="/login" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Login</p></motion.div></Link>
             </div>
             : 
-            <div className = "header--link" onClick={logout}><motion.div variants={reveal} whileHover={{scale: 1.1}}>Logout</motion.div></div> 
+            <div className = "header--link" onClick={logout}><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Logout</p></motion.div></div> 
             }
 
         </motion.div>

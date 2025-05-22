@@ -62,8 +62,11 @@ export default function Login() {
                         setShowError(true)
                     } else {
                         setMsg("SUCCESS")
-                        setCookie("user")
+                        setCookie("user", data.username)
                         setShowPopup(true)
+                        setTimeout(() => {
+                            navigate("/")
+                        }, 1000)
                     }
                 }
             )
@@ -85,7 +88,7 @@ export default function Login() {
                 value = {userData.username}/>
                 </label>
                 <label> Password
-                <input type="text"
+                <input type="password"
                 className="form--input"
                 onChange={handleChange}
                 name = "password"

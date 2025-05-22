@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 .home--content{
@@ -124,12 +125,18 @@
     margin-left: 1rem;
     margin-top: 5px;
     margin-right: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .link--box {
     display: flex;
 }
 
+.link--text {
+    padding: 5px;
+}
 
 @media (max-width: 700px) {
     .header--text {
@@ -155,7 +162,7 @@ main {
 .form--register {
     display: grid;
     grid-template-rows: 5vh 5vh 5vh;
-    grid-template-columns: 30vh 30vh 30vh;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
     gap: 50px;
 }
 
@@ -163,7 +170,7 @@ main {
 .form--login {
     display: grid;
     grid-template-rows: 5vh 5vh 5vh;
-    grid-template-columns: 50vh 50vh;
+    grid-template-columns: 30vw 30vw;
     gap: 50px;
 }
 
@@ -180,7 +187,7 @@ main {
 }
 
 .form--button--register{
-    grid-column: span 3;
+    grid-column: span 4;
     font-family: 'Karla';
     border-radius: 5px;
     background: linear-gradient(90.41deg, #1f338d 1.14%, #186cda 100%);
