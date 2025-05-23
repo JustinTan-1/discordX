@@ -2,6 +2,27 @@
     margin: 0;
     box-sizing: border-box;
 }
+textarea {
+    padding: 6px 12px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 4px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    :focus{
+        color: #212529;
+        background-color: #fff;
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    }
+    
+}
 
 .home--content{
     display: flex;
@@ -311,6 +332,8 @@ main {
     background: linear-gradient(90.41deg, #a0433f 1.14%, #d45844 100%);
     padding: 8px;
     color: rgb(67, 63, 63);
+    position: absolute;
+    top: 500px;
 }
 
 .popupSuccess { 
@@ -324,4 +347,57 @@ main {
     background: linear-gradient(90.41deg, #36952d 1.14%, #32d85e 100%);
     padding: 8px;
     color: rgb(67, 63, 63);
+    position: absolute;
+    top: 500px;
+}
+
+.messageBody{
+    width: 95vw;
+    margin-top: 10px;
+}
+
+.reply--button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    height: 38px;
+    min-width: 96px;
+    min-height: 38px;
+    border: none;
+    color: #fff;
+    background-color: rgb(88, 101, 242);
+    transition: background-color .17s ease,color .17s ease;
+}
+
+.reply--button:hover {
+    background-color: rgb(71, 82, 196);
+}
+
+.monitor--back {
+
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 2px 16px;
+    height: 32px;
+    min-width: 60px;
+    min-height: 32px;
+    border: none;
+    color: #fff;
+    background-color: rgb(242, 88, 88);
+    transition: background-color .17s ease,color .17s ease;
+    margin-bottom: 4px;
+}
+
+.monitor--back:hover {
+    background-color: rgb(160, 47, 47);
 }
