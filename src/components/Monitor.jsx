@@ -1,10 +1,12 @@
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {reveal, popup} from "../utils/animation.ts"
-import { data } from "framer-motion/client"
+import { data, filter } from "framer-motion/client"
 import constants from "../utils/constants.js"
 import { useCookies } from 'react-cookie'
 import  { useNavigate } from "react-router-dom"
+import { ToggleSlider }  from "react-toggle-slider";
+import BouncingCircles from "../assets/BouncingCircles.jsx"
  
 export default function Login() {
 
@@ -17,6 +19,9 @@ export default function Login() {
     const [messages, setMessages] = React.useState([])
     const [reply, setReply] = React.useState('')
     const [monitorOn, setMonitorOn] = React.useState(false) 
+    const [useAi, setUseAi] = React.useState(false)
+    const [prompt, setPrompt] = React.useState('')
+    const [sendingMsgs, setSendingMsgs] = React.useState(false)
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -33,6 +38,10 @@ export default function Login() {
         setReply(value)
     }
 
+    function handleChangePrompt(event) {
+        const {name, value} = event.target
+        setPrompt(value)
+    }
 
     React.useEffect(() => {
         if (showPopup) {
@@ -48,10 +57,14 @@ export default function Login() {
                 setShowError(false);
             }, 2000);
         }
-    }, [showError]);
-
+    }, [showError])
+    // Calls discord API to fetch channel messages
     function monitor() {
-        setMonitorOn(true)
+        if (!monitorOn) {
+            setMonitorOn(true)
+            setMessages([])
+        }
+        setUseAi(false)
         if (channelData.channel_id != "" && channelData.msgCount != "") {
             fetch(`${url}/api/monitor`, {
                 method: "POST",
@@ -81,47 +94,82 @@ export default function Login() {
         }
     }
 
+    // Handle replying to checked messages
     const handleSubmit = (event) => {
+        setSendingMsgs(true)
         event.preventDefault()
         const reply_array = []
         for (let element of event.target.elements) {
             if (element.checked){
-                console.log(element.name)
                 reply_array.push(element.name)
             }
         }
-        fetch(`${url}/api/message`, {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json" 
-            },
-            body: JSON.stringify({ channel_id: channelData.channel_id, reply_text: reply, mode: "manual", reply_array: reply_array})
-        })
-        .then (
-            res => res.json()
-        )
-        .then (
-            data => {
-                if (data.error) {
-                    setMsg(data.error)
-                    setShowError(true)
-                } else {
-                    setMsg(data.Success)
-                    setShowPopup(true)
+        if (useAi == false) {
+            fetch(`${url}/api/message`, {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json" 
+                },
+                body: JSON.stringify({ channel_id: channelData.channel_id, reply_text: reply, mode: "manual", reply_array: reply_array})
+            })
+            .then (
+                res => res.json()
+            )
+            .then (
+                data => {
+                    if (data.error) {
+                        setMsg(data.error)
+                        setShowError(true)
+                    } else {
+                        setMsg(data.Success)
+                        setShowPopup(true)
+                    }
+                    setSendingMsgs(false)
                 }
-            }
-        )
+            )
+        } else {
+            fetch(`${url}/api/message`, {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json" 
+                },
+                body: JSON.stringify({ channel_id: channelData.channel_id, mode: "ai", reply_array: reply_array, prompt:prompt})
+            })
+            .then (
+                res => res.json()
+            )
+            .then (
+                data => {
+                    if (data.error) {
+                        setMsg(data.error)
+                        setShowError(true)
+                    } else {
+                        setMsg(data.Success)
+                        setShowPopup(true)
+                    }
+                    setSendingMsgs(false)
+                }
+            )
+        }    
     }
+
+    function attachmentLoop(attachents) {
+        let string = ''
+        for (let item of attachents) {
+            string += `${item.url}, `
+        }
+        return string
+    }
+    // Taking the response from the API and formatting it
     const messageDisplay = messages.map(msg => {
-        return <><div>{`${msg['content']}  |  `} <strong>FROM: </strong>{`${msg["author"]["username"]}  |   ${msg["timestamp"]} `}<input type="checkbox" value={msg['id']} name={msg['id']}></input></div> </>
+        console.log(msg)
+        return <><div key={msg['id']}>{`${msg['content']}  |  `} <strong>FROM: </strong>{`${msg["author"]["username"]}  |   ${msg["timestamp"]} `} {msg["attachments"].length > 0 && `| Attachments: ${attachmentLoop(msg["attachments"])}`}<input type="checkbox" value={msg['id']} name={msg['id']} ></input></div> </>
     })
 
     function back() {
         setMonitorOn(false)
     }
 
-
-    console.log(reply)
     return (
         <>
         {cookie.user &&
@@ -162,10 +210,15 @@ export default function Login() {
             { monitorOn &&
             <motion.div variants={reveal}>
             <form method="post" onSubmit={handleSubmit}>
-            <div><button className="monitor--back" onClick={back}>&#8249; Back</button></div>
-            <div><textarea value={reply} onChange={handleChangeReply} placeholder="Enter your reply here"></textarea></div>
+            <div><button className="monitor--back" onClick={back}>&#8249; Back </button></div>
+            {!useAi && <div><textarea value={reply} onChange={handleChangeReply} placeholder="Enter your reply here"></textarea></div>}
+            {useAi && <div><textarea value={prompt} onChange={handleChangePrompt} placeholder="Enter your AI prompt here"></textarea></div>}
             <input type="hidden" name="channel_id" value={channelData.channel_id}></input>
-            <input type="submit" className="reply--button" value="Reply"></input>
+            <label className="slider--label"><ToggleSlider barBackgroundColorActive="#7785cc" onToggle={state => setUseAi(state)}></ToggleSlider>Toggle AI Response</label>
+            <div className="button--group">
+            <button type="submit" className="reply--button" disabled={!sendingMsgs ? false : true}>{!sendingMsgs ? <p>Reply</p> : <BouncingCircles></BouncingCircles>}</button>
+            <button type="button" className="reply--button" onClick={monitor}>Refresh</button>
+            </div>
             <div className="messageBody">{messageDisplay}</div>
             </form>
             </motion.div>

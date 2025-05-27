@@ -357,7 +357,9 @@ main {
 }
 
 .reply--button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     outline: none;
     cursor: pointer;
     border-radius: 3px;
@@ -370,13 +372,14 @@ main {
     min-height: 38px;
     border: none;
     color: #fff;
-    background-color: rgb(88, 101, 242);
+    background-color: #7785cc;
     transition: background-color .17s ease,color .17s ease;
 }
 
 .reply--button:hover {
     background-color: rgb(71, 82, 196);
 }
+
 
 .monitor--back {
 
@@ -400,4 +403,18 @@ main {
 
 .monitor--back:hover {
     background-color: rgb(160, 47, 47);
+}
+
+.slider--label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Karla";
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button--group {
+    display: flex;
+    gap: 8px;
 }
