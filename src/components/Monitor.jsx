@@ -5,7 +5,7 @@ import { data, filter } from "framer-motion/client"
 import constants from "../utils/constants.js"
 import { useCookies } from 'react-cookie'
 import  { useNavigate } from "react-router-dom"
-import { ToggleSlider }  from "react-toggle-slider";
+import { Switch } from "@mui/material"
 import BouncingCircles from "../assets/BouncingCircles.jsx"
  
 export default function Login() {
@@ -22,6 +22,7 @@ export default function Login() {
     const [useAi, setUseAi] = React.useState(false)
     const [prompt, setPrompt] = React.useState('')
     const [sendingMsgs, setSendingMsgs] = React.useState(false)
+    const [resetAi, setResetAi] = React.useState(false)
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -214,7 +215,8 @@ export default function Login() {
             {!useAi && <div><textarea value={reply} onChange={handleChangeReply} placeholder="Enter your reply here"></textarea></div>}
             {useAi && <div><textarea value={prompt} onChange={handleChangePrompt} placeholder="Enter your AI prompt here"></textarea></div>}
             <input type="hidden" name="channel_id" value={channelData.channel_id}></input>
-            <label className="slider--label"><ToggleSlider barBackgroundColorActive="#7785cc" onToggle={state => setUseAi(state)}></ToggleSlider>Toggle AI Response</label>
+            <label className="slider--label"><Switch barBackgroundColorActive="#7785cc" onChange={() => setUseAi(!useAi)} checked={useAi}></Switch>Toggle AI Response</label>
+            {useAi && <label className="slider--label"><Switch barBackgroundColorActive="#7785cc" onChange={() => setResetAi(!resetAi)} checked={resetAi}></Switch>Toggle Reset AI Chat History</label>}
             <div className="button--group">
             <button type="submit" className="reply--button" disabled={!sendingMsgs ? false : true}>{!sendingMsgs ? <p>Reply</p> : <BouncingCircles></BouncingCircles>}</button>
             <button type="button" className="reply--button" onClick={monitor}>Refresh</button>
