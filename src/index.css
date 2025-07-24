@@ -323,32 +323,28 @@ main {
     top: 0
 }
 
-.popupError { 
-    border: 1px solid gray;
-    border-radius: 10px;
-    font-size: 2rem;
+
+
+.popupError {
     font-family: "Karla";
-    margin-top: auto;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: white;
     background: linear-gradient(90.41deg, #a0433f 1.14%, #d45844 100%);
-    padding: 8px;
-    color: rgb(67, 63, 63);
-    position: absolute;
-    top: 500px;
 }
 
-.popupSuccess { 
-    border: 1px solid gray;
-    border-radius: 10px;
-    font-size: 2rem;
+.popupSuccess {
     font-family: "Karla";
-    margin-top: auto;
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     color: white;
-    background: linear-gradient(90.41deg, #36952d 1.14%, #32d85e 100%);
-    padding: 8px;
-    color: rgb(67, 63, 63);
-    position: absolute;
-    top: 500px;
+    background: linear-gradient(90.41deg, #3fa051 1.14%, #70dc68 100%);
 }
 
 .messageBody{

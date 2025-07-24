@@ -1,7 +1,7 @@
 import react from "react"
 import discord from "../assets/discord.png"
 import { Link } from "react-router-dom"
-import { motion } from "framer-motion"
+import { easeIn, motion } from "framer-motion"
 import { useAnimate, stagger } from "framer-motion"
 import {reveal} from "../utils/animation.ts"
 import { useCookies } from 'react-cookie'
@@ -21,13 +21,13 @@ export default function() {
             staggerChildren: 0.1,
             duration:0.5,
             delayChildren: 0.5
-        }}>
+        }} >
             <div className="header--left">
             <Link to="/" className = "header--text">
-            <motion.img src = {discord} className="header--img" initial={{ opacity: 0 }} animate= {{opacity: 1}} transition={{duration: 0.5}}/>
+            <motion.img src = {discord} className="header--img" />
             </Link>
             
-            <Link to="/" className = "header--text"><motion.div variants={reveal}>DiscordX</motion.div></Link>
+            <Link to="/" className = "header--text"><motion.div >DiscordX</motion.div></Link>
             {cookies.user ? <Link to="/monitor" className = "header--link"><motion.div variants={reveal} whileHover={{backgroundColor: "grey"}}><p className="link--text">Channel Monitor</p></motion.div></Link> : <></>}
             </div>
 
