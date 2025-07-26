@@ -1,7 +1,7 @@
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {reveal, popup} from "../utils/animation.ts"
-import { data, filter } from "framer-motion/client"
+import { data, filter, image } from "framer-motion/client"
 import constants from "../utils/constants.js"
 import { useCookies } from 'react-cookie'
 import  { useNavigate } from "react-router-dom"
@@ -22,7 +22,8 @@ export default function Login() {
     const [useAi, setUseAi] = React.useState(false)
     const [prompt, setPrompt] = React.useState('')
     const [sendingMsgs, setSendingMsgs] = React.useState(false)
-    const [resetAi, setResetAi] = React.useState(false)
+    const [aiImage, setAiImage] = React.useState(false)
+    const [imagePrompt, setImagePrompt] = React.useState('')
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -42,6 +43,11 @@ export default function Login() {
     function handleChangePrompt(event) {
         const {name, value} = event.target
         setPrompt(value)
+    }
+
+    function handleChangeImagePrompt(event) {
+        const {name, value} = event.target
+        setImagePrompt(value)
     }
 
     React.useEffect(() => {
@@ -134,7 +140,7 @@ export default function Login() {
                 headers: {
                     "Content-Type" : "application/json" 
                 },
-                body: JSON.stringify({ channel_id: channelData.channel_id, mode: "ai", reply_array: reply_array, prompt:prompt})
+                body: JSON.stringify({ channel_id: channelData.channel_id, mode: "ai", reply_array: reply_array, prompt:prompt, aiImage: aiImage, imagePrompt:imagePrompt})
             })
             .then (
                 res => res.json()
@@ -213,10 +219,11 @@ export default function Login() {
             <form method="post" onSubmit={handleSubmit}>
             <div><button className="monitor--back" onClick={back}>&#8249; Back </button></div>
             {!useAi && <div><textarea value={reply} onChange={handleChangeReply} placeholder="Enter your reply here"></textarea></div>}
-            {useAi && <div><textarea value={prompt} onChange={handleChangePrompt} placeholder="Enter your AI prompt here"></textarea></div>}
+            {useAi && <div><textarea value={prompt} onChange={handleChangePrompt} placeholder="Enter your AI message prompt here"></textarea></div>}
+            {useAi && aiImage && <div><textarea value={imagePrompt} onChange={handleChangeImagePrompt} placeholder="Enter your AI Image prompt here"></textarea></div>}
             <input type="hidden" name="channel_id" value={channelData.channel_id}></input>
             <label className="slider--label"><Switch barBackgroundColorActive="#7785cc" onChange={() => setUseAi(!useAi)} checked={useAi}></Switch>Toggle AI Response</label>
-            {useAi && <label className="slider--label"><Switch barBackgroundColorActive="#7785cc" onChange={() => setResetAi(!resetAi)} checked={resetAi}></Switch>Toggle Reset AI Chat History</label>}
+            {useAi && <label className="slider--label"><Switch barBackgroundColorActive="#7785cc" onChange={() => setAiImage(!aiImage)} checked={aiImage}></Switch>Include AI image</label> }
             <div className="button--group">
             <button type="submit" className="reply--button" disabled={!sendingMsgs ? false : true}>{!sendingMsgs ? <p>Reply</p> : <BouncingCircles></BouncingCircles>}</button>
             <button type="button" className="reply--button" onClick={monitor}>Refresh</button>
